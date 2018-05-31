@@ -1,0 +1,56 @@
+<div style="height:100%; background-image: url(http://getwallpapers.com/wallpaper/full/4/c/c/29997.jpg); background-repeat: no-repeat; background-size: cover; margin-top: 0px">
+    <div style="padding-top:50px; padding-left: 30px; padding-right: 30px">
+        <div class="card" *ngIf="lijst" style="max-height:85vh">
+            <div class="card-header amber lighten-1 white-text text-center">People</div>
+            <div class="card-body" style="overflow-y:auto">
+                <table class="table table-hover">
+                    <thead>
+                            <label style="margin-right: 5px">Sort: </label>
+                            <select class="browser-default" #sortselect style="margin-right: 5px">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="color">color</option>
+                                <option value="name">name</option>
+                                <option value="affiliation">affiliation (default)</option>
+                            </select> 
+                            <button (click)="SetSort(sortselect.value)">Apply</button>
+                        <tr>
+                            <th class="text-left">name</th>
+                            <th class="text-left">color lightsaber</th>
+                            <th class="text-left">affiliation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of lijst">
+                            <td><a (click)="GetWielder(person.id)" style="text-decoration: underline">{{person.name}}</a></td>
+                            <td>{{person.color}}</td>
+                            <td><a (click)="Affiliation(person.affiliation)" style="text-decoration: underline">{{person.affiliation.name}}</a></td>
+
+                        </tr>
+                    </tbody>
+                    <button (click)="previousPage()">previous page</button>
+                    <button (click)="nextPage()">next page</button>
+                </table>
+            </div>
+        </div>
+        <div class="col" *ngIf="affiliationDetail">
+            <div class="card" style="margin-top: 50px; margin-left: 8px">
+                <h3 class="card-header amber white-text">{{affiliationDetail.name}}</h3>
+                <div class="card-body">
+                        <h4 class="card-title">episode id: {{affiliationDetail.leadertitle}}</h4>
+                        <br>
+                        <p style="font-size: 12px">release date: {{affiliationDetail.dateFounded}}</p>   
+                </div>
+            </div>
+        </div>
+        <div class="col" *ngIf="wielder">
+                <div class="card" style="margin-top: 50px; margin-left: 8px">
+                    <h3 class="card-header amber white-text">{{wielder.name}}</h3>
+                    <div class="card-body">
+                            <h4 class="card-title"><p style="margin-right:20px"> Lightsaber color: {{wielder.color}}</p> Affiliation name: {{wielder.affiliation.name}}</h4>
+                            
+                            <button (click)="DeleteWielder(wielder.id)">Delete</button> 
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

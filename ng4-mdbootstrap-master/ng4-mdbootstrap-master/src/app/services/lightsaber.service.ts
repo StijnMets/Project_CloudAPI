@@ -6,9 +6,19 @@ import { Observable } from "rxjs/Observable";
 export class LightsaberService {
     constructor(private _http: HttpClient){}
 
-    WielderList(page: number): Observable<IWielder[]>
+    WielderList(page: number, sort: string): Observable<IWielder[]>
     {
-        return this._http.get<IWielder[]>(`localhost:5000/api/v1/wielders?page=${page}`)
+        return this._http.get<IWielder[]>(`http://localhost:5000/api/v1/wielders?sort=${sort}&page=${page}`)
+    }
+
+    GetWielder(id: number)
+    {
+        return this._http.get<IWielder>(`http://localhost:5000/api/v1/wielders/${id}`)
+    }
+
+    DeleteWielder(id: number)
+    {
+        return this._http.delete<IWielder>(`http://localhost:5000/api/v1/wielders/${id}`)
     }
 
 }
