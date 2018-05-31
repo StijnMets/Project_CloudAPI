@@ -31,4 +31,15 @@ public class LightsaberWielderController : Controller
         
         return Ok(wielder);
     }
+
+    public List<LightSaberWielder> GetAllWielders(string name, string color, int? page, string sort)
+    {
+        IQueryable<LightSaberWielder> query = context.LightSaberWielders;
+
+        if (!string.IsNullOrWhiteSpace(name))
+            query = query.Where(d => d.Name == name);
+        if (!string.IsNullOrWhiteSpace(color))
+            query = query.Where(d => d.Color == color);
+          
+    }
 }
