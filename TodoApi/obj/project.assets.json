@@ -12536,11 +12536,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\TodoApi\\TodoApi.csproj",
+      "projectUniqueName": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\Cloud_API_project\\TodoApi\\TodoApi.csproj",
       "projectName": "TodoApi",
-      "projectPath": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\TodoApi\\TodoApi.csproj",
+      "projectPath": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\Cloud_API_project\\TodoApi\\TodoApi.csproj",
       "packagesPath": "C:\\Users\\shado\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\TodoApi\\obj\\",
+      "outputPath": "c:\\Users\\shado\\Desktop\\School\\Cloud_API\\Cloud_API_project\\TodoApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
