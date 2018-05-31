@@ -24,6 +24,7 @@ namespace Model
                     Leadertitle = "Dark Lord of the Sith",
                     DateFounded = "1000 BBY"
                 };
+                context.Affiliations.Add(jediOrder);
 
                 //wielders
                 //jedi

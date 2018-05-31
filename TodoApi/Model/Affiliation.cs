@@ -7,11 +7,11 @@ namespace Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public ICollection<LightSaberWielder> LightSaberWielders { get; set; }
-
         public string Leadertitle { get; set; }
 
         public string DateFounded { get; set; }
+
+        [JsonIgnore]
+        public ICollection<LightSaberWielder> LightSaberWielders { get; set; }
     }
 }

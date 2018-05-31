@@ -15,9 +15,12 @@ public class LightsaberWielderController : Controller
         this.context = context;
     }
 
-    public List<LightSaberWielder> GetAllWielders(string name, string color, int? page, string sort, string dir = "asc", int length = 2)
+    [HttpGet]
+    public List<LightSaberWielder> GetAllWielders(string name, string color, int? page, string sort, string dir = "asc", int length = 4)
     {
-        IQueryable<LightSaberWielder> query = context.LightSaberWielders;
+        IQueryable<LightSaberWielder> query = context.LightSaberWielders
+                                                .Include(d => d.Affiliation);
+                                                
 
         if (!string.IsNullOrWhiteSpace(name))
             query = query.Where(d => d.Name == name);
