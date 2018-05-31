@@ -1,0 +1,15 @@
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark amber darken-2 scrolling-navbar" [containerInside]="false">
+  <links>
+      <ul class="navbar-nav mr-auto">
+          <li [routerLinkActive] ="['active']" class="nav-item active waves-light" mdbRippleRadius >
+              <a [routerLink] ="['/peoplelist']" class="nav-link" >People <span class="sr-only">(current)</span></a>
+          </li >
+          <li [routerLinkActive] ="['active']" class="nav-item waves-light" mdbRippleRadius>
+              <a [routerLink] ="['/movielist']" class="nav-link" >Movies</a>
+          </li>
+          <li [routerLinkActive] ="['active']" class="nav-item waves-light" mdbRippleRadius>
+              <a class="nav-link" [routerLink] = "['/planetlist']">Planets</a>
+          </li>
+      </ul>
+  </links>
+</mdb-navbar>

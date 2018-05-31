@@ -1,0 +1,21 @@
+<div class="card" *ngIf="person" style="max-height:85vh; margin-top:50px">
+    <div class="card-header text-center">People</div>
+    <div class="card-body" style="overflow-y:auto">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">name</th>
+                    <th class="text-center">birth year</th>
+                    <th class="text-center">gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{person.name}}</td>
+                    <td>{{person.birth_year}}</td>
+                    <td>{{person.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

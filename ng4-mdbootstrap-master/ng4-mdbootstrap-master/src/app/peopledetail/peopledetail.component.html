@@ -1,0 +1,58 @@
+<div style="height:100%; background-image: url(https://xshyfc.com/wp-content/uploads/data/2018/3/18/Star-Wars-Desktop-Wallpaper-1920x1080-PIC-WPXH514257.jpg); background-repeat: no-repeat; background-size: cover; margin-top: 0px">
+
+<div class="row" *ngIf="person">
+    <div class="col">
+        <div class="card" style="margin-top: 50px; margin-left: 20px">
+            <h3 class="card-header amber white-text">{{person.name}}</h3>
+            <div class="card-body">
+                <h4 class="card-title">{{species.name}}</h4>
+                    <ul style="font-size: 16px">
+                        <li> BIRTH YEAR: {{person.birth_year}} </li>
+                        <li> GENDER: {{person.gender}}</li>              
+                        <li> HEIGHT: {{person.height}}</li>              
+                        <li> WEIGHT: {{person.mass}}</li>              
+                        <li> HOME PLANET: {{planet.name}}</li>   
+                        <li> LOOKS: {{person.hair_color}} hair, {{person.eye_color}} eyes</li>         
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col" *ngIf="films">
+        <div class="card" style="margin-top: 50px">
+            <h3 class="card-header amber lighten-1 white-text">MOVIES</h3>
+            <div class="card-body">
+                <ul *ngFor="let film of films" style="font-size: 16px">
+                    <li><a (click)="MovieDetails(film)" style="text-decoration: underline">{{film.title}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card" style="margin-top: 50px; margin-right: 20px">
+            <h3 class="card-header amber lighten-1 white-text">VEHICLES</h3>
+            <div class="card-body">
+                <ul *ngFor="let vehicle of vehicles" style="font-size: 16px">
+                        <li>{{vehicle.name}}</li>
+                </ul>
+                <h4 class="card-title">Starships</h4>
+                <ul *ngFor="let starship of starships" style="font-size: 16px">
+                        <li>{{starship.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col" *ngIf="moviedetail">
+    <div class="card" style="margin-top: 50px; margin-left: 8px">
+        <h3 class="card-header amber white-text">{{moviedetail.title}}</h3>
+        <div class="card-body">
+                <h4 class="card-title">episode id: {{moviedetail.episode_id}}</h4>
+                {{moviedetail.opening_crawl}} <br>
+                <p style="font-size: 12px">release date: {{moviedetail.release_date}}</p>   
+        </div>
+    </div>
+</div>
+</div>

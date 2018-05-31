@@ -1,0 +1,50 @@
+<div class="container-fluid" style="height:100%; background-image: url(https://static1.squarespace.com/static/5697b671e0327ca6778b70ae/569f0bad05caa7c1727f7ad8/58486e8e893fc079ca331522/1485815399707/star-wars-planet-wallpaper-iphone.jpg); background-repeat: no-repeat; background-size: cover">
+<div class="row">    
+    <div class="col-sm-3">
+        <div class="card" *ngIf="lijst" style="max-height:85vh; margin-top:50px; margin-left: 20px">
+            <div class="card-header amber white-text text-center">Planets</div>
+            <div class="card-body" style="overflow-y: auto">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-left">name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let planet of lijst.results">
+                            <td (click)="PlanetDetail(planet)">{{planet.name}} <i class="fa fa-chevron-right" aria-hidden="true" style="float:right"></i></td>
+                        </tr>
+                    </tbody>
+                    <button (click)="previousPage()">previous page</button>
+                    <button (click)="nextPage()">next page</button>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+            <div class="card" *ngIf="planetDetail" style="max-height:85vh; margin-top:50px; margin-right: 20px">
+                <div class="card-header amber lighten-1 white-text text-center" style="font-size: 18px">{{planetDetail.name}}</div>
+                <h4 class="card-title" style="margin-left:20px"><span style="font-weight:bold">Population:</span> {{planetDetail.population| number}}</h4>
+                <div class="card-body" style="margin-top:-10px">
+                    <p><span style="font-weight:bold"> rotation period:</span> {{planetDetail.rotation_period}} <span style="margin-left:20px; font-weight:bold">orbital period: </span>{{planetDetail.orbital_period}}<span style="font-weight:bold; margin-left:20px">diameter: </span>{{planetDetail.diameter}}</p>
+                    <p><span style="font-weight:bold">climate:</span> {{planetDetail.climate}}</p>
+                    <p><span style="font-weight:bold">terrain: </span>{{planetDetail.terrain}}</p>
+                    <div class="row">
+                        <div class="col">
+                            <p style="font-weight:bold">Residents:</p> 
+                            <ul *ngFor="let people of peopleList" style="font-size: 16px">
+                                <li><a class="black-text" [routerLink]="['/peopledetail']" [queryParams]="{url: people.url}" style="text-decoration: underline">{{people.name}}</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <p style="font-weight:bold">Movies:</p>
+                            <ul *ngFor="let film of movieList" style="font-size: 16px">
+                                <li><a class="black-text" [routerLink]="['/movielist']" [queryParams]="{url: film.url}" style="text-decoration: underline">{{film.title}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

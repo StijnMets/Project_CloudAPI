@@ -1,0 +1,30 @@
+<div style="height:100%; background-image: url(http://getwallpapers.com/wallpaper/full/4/c/c/29997.jpg); background-repeat: no-repeat; background-size: cover; margin-top: 0px">
+    <div style="padding-top:50px; padding-left: 30px; padding-right: 30px">
+        <div class="card" *ngIf="lijst" style="max-height:85vh">
+            <div class="card-header amber lighten-1 white-text text-center">People <div class="md-form" (keyup.enter)="PeopleSearch(search.value)"> <input mdbInputDirective #search type="text" id="form1" class="form-control" placeholder="Search"></div></div>
+            <div class="card-body" style="overflow-y:auto">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-left">name</th>
+                            <th class="text-left">birth year</th>
+                            <th class="text-left">gender</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of lijst.results" [routerLinkActive]="['active']">
+                            <td>
+                                <a [routerLink]="['/peopledetail']" [queryParams]="{url: person.url}" style="text-decoration: underline">{{person.name}}</a>
+                            </td>
+                            <td>{{person.birth_year}}</td>
+                            <td>{{person.gender}}</td>
+
+                        </tr>
+                    </tbody>
+                    <button (click)="previousPage()">previous page</button>
+                    <button (click)="nextPage()">next page</button>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
