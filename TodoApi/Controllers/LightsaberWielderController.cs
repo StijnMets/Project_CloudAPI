@@ -43,6 +43,12 @@ public class LightsaberWielderController : Controller
                     else if(dir == "desc")
                         query = query.OrderByDescending(d => d.Name);
                         break;
+                case "affiliation":
+                    if(dir == "asc")
+                        query = query.OrderBy(d => d.Affiliation.Name);
+                    else if(dir == "desc")
+                        query = query.OrderByDescending(d => d.Affiliation.Name);
+                        break;                        
             }
         }
 
@@ -100,7 +106,6 @@ public class LightsaberWielderController : Controller
         orgWielder.Name = updateWielder.Name;
         orgWielder.Color = updateWielder.Color;
         orgWielder.Affiliation = updateWielder.Affiliation;
-
         context.SaveChanges();
         return Ok(orgWielder);
     }

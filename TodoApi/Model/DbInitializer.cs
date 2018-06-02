@@ -37,6 +37,13 @@ namespace Model
                 context.LightSaberWielders.Add(wielder);
                 wielder = new LightSaberWielder()
                 {
+                    Name = "Darth Bane",
+                    Color = "purple",
+                    Affiliation = sithOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
                     Name = "Yoda",
                     Color = "green",
                     Affiliation = jediOrder
@@ -51,9 +58,22 @@ namespace Model
                 context.LightSaberWielders.Add(wielder);
                 wielder = new LightSaberWielder()
                 {
+                    Name = "Darth Maul",
+                    Color = "red",
+                    Affiliation = sithOrder
+                };
+                wielder = new LightSaberWielder()
+                {
                     Name = "Obi-Wan Kenobi",
                     Color = "blue",
                     Affiliation = jediOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Anakin Skywalker (Sidious apprentice)",
+                    Color = "blue",
+                    Affiliation = sithOrder
                 };
                 context.LightSaberWielders.Add(wielder);
                 wielder = new LightSaberWielder()
@@ -77,22 +97,6 @@ namespace Model
                     Affiliation = jediOrder
                 };
                 context.LightSaberWielders.Add(wielder);
-
-                //sith
-                wielder = new LightSaberWielder()
-                {
-                    Name = "Darth Bane",
-                    Color = "purple",
-                    Affiliation = sithOrder
-                };
-                context.LightSaberWielders.Add(wielder);
-                wielder = new LightSaberWielder()
-                {
-                    Name = "Anakin Skywalker",
-                    Color = "blue",
-                    Affiliation = sithOrder
-                };
-                context.LightSaberWielders.Add(wielder);
                 wielder = new LightSaberWielder()
                 {
                     Name = "Darth vader",
@@ -102,10 +106,47 @@ namespace Model
                 context.LightSaberWielders.Add(wielder);
                 wielder = new LightSaberWielder()
                 {
-                    Name = "Darth Maul",
+                    Name = "Darth Sidious",
                     Color = "red",
                     Affiliation = sithOrder
                 };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Ahsoka Tano",
+                    Color = "green, yellow, white",
+                    Affiliation = jediOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Luke Skywalker",
+                    Color = "green",
+                    Affiliation = jediOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Darth Bane",
+                    Color = "red",
+                    Affiliation = sithOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Darth Tyranus",
+                    Color = "red",
+                    Affiliation = sithOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+                wielder = new LightSaberWielder()
+                {
+                    Name = "Darth Zannah",
+                    Color = "red",
+                    Affiliation = sithOrder
+                };
+                context.LightSaberWielders.Add(wielder);
+
                 context.LightSaberWielders.Add(wielder);
                 context.SaveChanges();
             }
