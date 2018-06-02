@@ -9,7 +9,6 @@ using System.Collections.Generic;
 public class LightsaberWielderController : Controller
 {
     private readonly LibraryContext context;
-
     public LightsaberWielderController(LibraryContext context)
     {
         this.context = context;
@@ -90,7 +89,11 @@ public class LightsaberWielderController : Controller
     [HttpPost]
     public IActionResult CreateWielder([FromBody] LightSaberWielder newWielder)
     {
-        context.LightSaberWielders.Add(newWielder);
+        var wielder = new LightSaberWielder();
+        wielder.Name = newWielder.Name;
+        wielder.Color = newWielder.Color;
+        wielder.Affiliation = context.Affiliations.Find(newWielder.Affiliation.Id);
+        context.LightSaberWielders.Add(wielder);
         context.SaveChanges();
 
         return Created("", newWielder);
@@ -99,13 +102,16 @@ public class LightsaberWielderController : Controller
     [HttpPut]
     public IActionResult UpdateWielder([FromBody] LightSaberWielder updateWielder)
     {
-        var orgWielder = context.LightSaberWielders.Find(updateWielder.Id);
+        
+        var orgWielder = context.LightSaberWielders
+                        .Include(d => d.Affiliation)
+                        .SingleOrDefault(d => d.Id == updateWielder.Id);
         if(orgWielder == null)
             return NotFound();
         
         orgWielder.Name = updateWielder.Name;
         orgWielder.Color = updateWielder.Color;
-        orgWielder.Affiliation = updateWielder.Affiliation;
+        orgWielder.Affiliation = context.Affiliations.Find(updateWielder.Affiliation.Id);
         context.SaveChanges();
         return Ok(orgWielder);
     }
