@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LightsaberService, IWielder, IAffiliation } from '../services/lightsaber.service';
+import { LightsaberService, IWielder, IAffiliation, INewWielder } from '../services/lightsaber.service';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
@@ -15,6 +15,7 @@ export class WielderListComponent implements OnInit{
     affiliationDetail : IAffiliation;
     wielder : IWielder;
     updateWielder : IWielder;
+    wieldercreation : boolean = false;
     page = 0;
     sort = "affiliation";
 
@@ -50,6 +51,9 @@ export class WielderListComponent implements OnInit{
     Affiliation(affiliation: IAffiliation)
     {
         this.wielder = null;
+        this.updateWielder = null;
+        this.wieldercreation = false;
+
         this.affiliationDetail = affiliation;
     }
 
@@ -61,6 +65,9 @@ export class WielderListComponent implements OnInit{
     GetWielder(id: number)
     {
         this.affiliationDetail = null;
+        this.updateWielder = null;
+        this.wieldercreation = false;
+
         this.service.GetWielder(id).subscribe(d => this.wielder = d);
     }
 
@@ -73,12 +80,47 @@ export class WielderListComponent implements OnInit{
 
     EditWielder(id: number)
     {
+        this.affiliationDetail = null;
         this.wielder = null;
+        this.updateWielder = null;
+        this.wieldercreation = false;
+
+
         this.service.GetWielder(id).subscribe(d => {this.updateWielder = d;
-            this.updateWielder.name = "Yoda";
-            this.updateWielder.color = "green";
-            this.service.UpdateWielder(this.updateWielder).subscribe();
+        console.log(this.updateWielder);});
+        
+    }
+
+    ApplyWielder(id: number, name: string, color: string, affiliationid: number)
+    {
+        this.affiliationDetail = null;
+        this.wielder = null;
+        this.wieldercreation = null;
+        this.wieldercreation =false;
+
+
+        this.service.GetWielder(id).subscribe(d => {this.updateWielder = d;
+            this.updateWielder.name = name;
+            this.updateWielder.color = color;
+            this.service.GetAffiliation(affiliationid).subscribe(d => {this.updateWielder.affiliation = d;
+                this.service.UpdateWielder(this.updateWielder).subscribe();});
             console.log(this.updateWielder);
+ 
         });
+    }
+
+    CreateWielder(){
+        this.wielder = null;
+        this.updateWielder = null;
+        this.affiliationDetail = null;
+        this.wieldercreation = true;
+    }
+
+    NewWielder(name: string, color: string, affiliationid: number)
+    {
+        this.service.GetAffiliation(affiliationid).subscribe(d => {var newWielder: INewWielder = {name: name, color: color, affiliation: d};;
+            this.service.CreateWielder(newWielder).subscribe();
+        });
+        this.wieldercreation = false;
     }
 }

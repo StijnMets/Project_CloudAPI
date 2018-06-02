@@ -23,12 +23,22 @@ export class LightsaberService {
 
     UpdateWielder(wielder: IWielder)
     {
-        return this._http.put<IWielder>(`http://localhost:5000/api/v1/wielders`, wielder);
+        return this._http.put<IWielder>(`http://localhost:5000/api/v1/wielders`, wielder)
+    }
+
+    CreateWielder(wielder: INewWielder)
+    {
+        return this._http.post<INewWielder>(`http://localhost:5000/api/v1/wielders`, wielder)
     }
 
     AffiliationList() : Observable<IAffiliation[]>
     {
         return this._http.get<IAffiliation[]>(`http://localhost:5000/api/v1/affiliations`)
+    }
+
+    GetAffiliation(id: number) : Observable<IAffiliation>
+    {
+        return this._http.get<IAffiliation>(`http://localhost:5000/api/v1/affiliations/${id}`)
     }
 
 }
@@ -42,6 +52,12 @@ export interface IAffiliation {
 
 export interface IWielder {
     id: number;
+    name: string;
+    color: string;
+    affiliation: IAffiliation;
+}
+
+export interface INewWielder {
     name: string;
     color: string;
     affiliation: IAffiliation;

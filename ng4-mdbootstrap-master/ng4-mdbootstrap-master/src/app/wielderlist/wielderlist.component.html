@@ -1,4 +1,4 @@
-<div style="height:100%; background-image: url(http://getwallpapers.com/wallpaper/full/4/c/c/29997.jpg); background-repeat: no-repeat; background-size: cover; margin-top: 0px">
+<div style="height:100%; background-image: url(http://7wallpapers.net/wp-content/uploads/2_LEGO-Star-Wars-The-Force-Awakens.jpg); margin-top: 0px;background-repeat: no-repeat; background-size: cover;">
     <div style="padding-top:50px; padding-left: 30px; padding-right: 30px">
         <div class="card" *ngIf="list" style="max-height:85vh">
             <div class="card-header amber lighten-1 white-text text-center">People</div>
@@ -12,7 +12,8 @@
                                 <option value="name">name</option>
                                 <option value="affiliation">affiliation (default)</option>
                             </select> 
-                            <button (click)="SetSort(sortselect.value)">Apply</button>
+                            <button (click)="SetSort(sortselect.value)" style="margin-right: 10px">Apply</button>
+                            <button (click)="CreateWielder()">New</button>
                         <tr>
                             <th class="text-left">name</th>
                             <th class="text-left">color lightsaber</th>
@@ -32,53 +33,78 @@
                 </table>
             </div>
         </div>
-        <div class="col" *ngIf="affiliationDetail">
+        <div *ngIf="affiliationDetail">
             <div class="card" style="margin-top: 20px">
                 <h3 class="card-header amber white-text">{{affiliationDetail.name}}</h3>
                 <div class="card-body">
-                    <h4 class="card-title">episode id: {{affiliationDetail.leadertitle}}</h4>
-                    <br>
-                    <p style="font-size: 12px">release date: {{affiliationDetail.dateFounded}}</p>   
+                    <h4 class="card-title"><p><span style="font-weight:bold"> Leader title: </span>{{affiliationDetail.leadertitle}}</p><span style="font-weight:bold"> Date founded: </span>{{affiliationDetail.dateFounded}}</h4>   
                 </div>
             </div>
         </div>
-       <div class="col" *ngIf="wielder">
+       <div *ngIf="wielder">
             <div class="card" style="margin-top: 20px">
                 <h3 class="card-header amber white-text">{{wielder.name}}</h3>
                 <div class="card-body">
-                    <h4 class="card-title"><p style="margin-right:20px"><span style="font-weight:bold"> Lightsaber color: </span>{{wielder.color}}</p><span style="font-weight:bold"> Affiliation name: </span>{{wielder.affiliation.name}}</h4>
+                    <h4 class="card-title"><p><span style="font-weight:bold"> Lightsaber color: </span>{{wielder.color}}</p><span style="font-weight:bold"> Affiliation name: </span>{{wielder.affiliation.name}}</h4>
                         
                     <button (click)="DeleteWielder(wielder.id)">Delete</button>
                     <button (click)="EditWielder(wielder.id)">Edit</button> 
                 </div>
             </div>
         </div>
-        <div class="col" *ngIf="updateWielder">
+        <div *ngIf="updateWielder">
             <div class="card" style="margin-top: 20px">
                 <h3 class="card-header amber white-text">{{updateWielder.name}}</h3>
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col">
                             <label for="form1">Name</label>
-                            <input type="text" class="form-control" id="form1" [value]="updateWielder.name">
+                            <input #name type="text" class="form-control" id="form1" [value]="updateWielder.name">
                         </div>
                         <div class="form-group col">
                                 <label for="form2">Color</label>
-                                <input type="text" class="form-control" id="form2" [value]="updateWielder.color">
+                                <input #color type="text" class="form-control" id="form2" [value]="updateWielder.color">
                             </div>
                         <div class="col">
                             <label style="margin-right: 5px">Affiliation: </label> <br> <br>
-                            <select class="browser-default" #sortselect style="margin-right: 5px; margin-top:20">
+                            <select class="browser-default" #affilselect style="margin-right: 5px; margin-top:20">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option *ngFor="let affiliation of affiliations" [value]="affiliation">{{affiliation.name}}</option>
+                                <option *ngFor="let affiliation of affiliations" [value]="affiliation.id">{{affiliation.name}}</option>
                             </select> 
                         </div>
                         <div class="col">
-                            <button (click)="SetSort(sortselect.value)" style="margin-top:50px">Apply</button>
+                            <button (click)="ApplyWielder(updateWielder.id, name.value, color.value, affilselect.value)" style="margin-top:50px">Apply</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+        <div class="col" *ngIf="wieldercreation">
+                <div class="card" style="margin-top: 20px">
+                    <h3 class="card-header amber white-text">Add new wielder</h3>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="form1">Name</label>
+                                <input #newname type="text" class="form-control" id="form1">
+                            </div>
+                            <div class="form-group col">
+                                    <label for="form2">Color</label>
+                                    <input #newcolor type="text" class="form-control" id="form2">
+                                </div>
+                            <div class="col">
+                                <label style="margin-right: 5px">Affiliation: </label> <br> <br>
+                                <select class="browser-default" #newaffilselect style="margin-right: 5px; margin-top:20">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option *ngFor="let affiliation of affiliations" [value]="affiliation.id">{{affiliation.name}}</option>
+                                </select> 
+                            </div>
+                            <div class="col">
+                                <button (click)="NewWielder(newname.value, newcolor.value, newaffilselect.value)" style="margin-top:50px">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
     </div>
 </div>
