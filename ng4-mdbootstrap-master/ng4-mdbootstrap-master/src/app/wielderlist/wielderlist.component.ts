@@ -10,25 +10,28 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 
 export class WielderListComponent implements OnInit{
-    lijst : IWielder[];
+    list : IWielder[];
+    affiliations : IAffiliation[];
     affiliationDetail : IAffiliation;
     wielder : IWielder;
+    updateWielder : IWielder;
     page = 0;
     sort = "affiliation";
 
     constructor(private _router: Router, private service: LightsaberService){}
 
     ngOnInit(){
-        this.service.WielderList(this.page, this.sort).subscribe(d => this.lijst = d);
+        this.service.WielderList(this.page, this.sort).subscribe(d => this.list = d);
+        this.service.AffiliationList().subscribe(d => this.affiliations = d);
     }
 
     nextPage() {
         this.page ++;
-        this.service.WielderList(this.page, this.sort).subscribe(d => {this.lijst = d;
-        console.log(this.lijst);
-        if (this.lijst.length == 0){
+        this.service.WielderList(this.page, this.sort).subscribe(d => {this.list = d;
+        console.log(this.list);
+        if (this.list.length == 0){
             this.page --;
-            this.service.WielderList(this.page, this.sort).subscribe(d => this.lijst = d);
+            this.service.WielderList(this.page, this.sort).subscribe(d => this.list = d);
         }
             
         console.log(this.page);
@@ -41,7 +44,7 @@ export class WielderListComponent implements OnInit{
         {
             this.page --;
         }
-        this.service.WielderList(this.page, this.sort).subscribe(d => this.lijst = d);
+        this.service.WielderList(this.page, this.sort).subscribe(d => this.list = d);
     }
 
     Affiliation(affiliation: IAffiliation)
@@ -52,7 +55,7 @@ export class WielderListComponent implements OnInit{
 
     SetSort(sort: string){
         console.log(sort);
-        this.service.WielderList(this.page, sort).subscribe(d => this.lijst = d);
+        this.service.WielderList(this.page, sort).subscribe(d => this.list = d);
     }
 
     GetWielder(id: number)
@@ -64,7 +67,18 @@ export class WielderListComponent implements OnInit{
     DeleteWielder(id: number)
     {
         this.service.DeleteWielder(id).subscribe();
-        this.service.WielderList(this.page, this.sort).subscribe(d => this.lijst = d);
+        this.service.WielderList(this.page, this.sort).subscribe(d => this.list = d);
         this.wielder = null;
+    }
+
+    EditWielder(id: number)
+    {
+        this.wielder = null;
+        this.service.GetWielder(id).subscribe(d => {this.updateWielder = d;
+            this.updateWielder.name = "Yoda";
+            this.updateWielder.color = "green";
+            this.service.UpdateWielder(this.updateWielder).subscribe();
+            console.log(this.updateWielder);
+        });
     }
 }
